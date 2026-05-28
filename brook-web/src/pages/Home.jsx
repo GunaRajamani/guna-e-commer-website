@@ -13,10 +13,6 @@ const products = [
   { id: 8, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
   { id: 9, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
   { id: 10, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 11, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 12, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 13, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 14, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
 ]
 
 function Home() {
