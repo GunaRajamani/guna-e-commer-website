@@ -8,14 +8,14 @@ function ProductCard({ product }) {
       <img
         src={product.image}
         className="card-img-top object-fit-cover"
-        style={{ height: "200px" }}
-        alt={product.name}
+        style={{ height: "220px",objectFit:"contain" }}
+        alt={product.title}
       />
       <div className="card-body d-flex flex-column">
         <span className="badge bg-secondary mb-2 align-self-start">
           {product.category}
         </span>
-        <h5 className="card-title">{product.name}</h5>
+        <h5 className="card-title">{product.title}</h5>
         <p className="text-success fw-bold">${product.price}</p>
         <button
           className="btn btn-dark w-100 mt-auto"

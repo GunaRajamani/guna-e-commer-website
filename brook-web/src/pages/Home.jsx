@@ -1,28 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import BannerCarousel from '../components/BannerCarousel'
 
-const products = [
-  { id: 1, name: "Wireless Headphones", price: 49.99,  category: "Electronics", image: "https://via.placeholder.com/300" },
-  { id: 2, name: "Running Shoes",        price: 89.99,  category: "Footwear",     image: "https://via.placeholder.com/300" },
-  { id: 3, name: "Smart Watch",          price: 129.99, category: "Electronics", image: "https://via.placeholder.com/300" },
-  { id: 4, name: "Backpack",             price: 39.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 5, name: "Sunglasses",           price: 29.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 6, name: "Sneakers",             price: 69.99,  category: "Footwear",     image: "https://via.placeholder.com/300" },
-  { id: 7, name: "Bluetooth Speaker",    price: 59.99,  category: "Electronics", image: "https://via.placeholder.com/300" },
-  { id: 8, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 9, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-  { id: 10, name: "Leather Wallet",       price: 24.99,  category: "Accessories", image: "https://via.placeholder.com/300" },
-]
+
 
 function Home() {
+  const [products, setProducts] = useState([])
   const [search, setSearch]     = useState("")
   const [category, setCategory] = useState("All")
+
+  useEffect(() => {
+
+  fetch("https://fakestoreapi.com/products")
+    .then((response) => response.json())
+    .then((data) => setProducts(data))
+
+}, [])
 
   const categories = ["All", ...new Set(products.map((p) => p.category))]
 
   const filtered = products.filter((p) => {
-    const matchSearch   = p.name.toLowerCase().includes(search.toLowerCase())
+    const matchSearch   = p.title.toLowerCase().includes(search.toLowerCase())
     const matchCategory = category === "All" || p.category === category
     return matchSearch && matchCategory
   })
