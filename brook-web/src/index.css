@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
