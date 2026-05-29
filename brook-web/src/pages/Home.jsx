@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
-import BannerCarousel from '../components/BannerCarousel'
+import BannerCarousel from '../components/BannerCarousel_Light'
 
 
 

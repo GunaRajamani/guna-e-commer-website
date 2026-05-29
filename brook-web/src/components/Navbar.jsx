@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
+
+
 function Navbar() {
   const { totalItems } = useCart()
   const location = useLocation()
@@ -116,12 +118,15 @@ function Navbar() {
         </ul>
 
         <div className="nk-right">
+          <Link to="/login" className="nk-link" style={{ padding: '7px 14px' }}>
+            Login
+          </Link>
           <Link to="/cart" className="nk-cart">
             🛒 Cart
             {totalItems > 0 && <span className="nk-badge">{totalItems}</span>}
           </Link>
-        </div>
-      </nav>
+        </div>      
+        </nav>
     </>
   )
 }
