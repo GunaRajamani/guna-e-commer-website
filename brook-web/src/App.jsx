@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
-import Navbar   from './components/Navbar'
+import Navbar   from './components/Navbar_Light'
 import Home     from './pages/Home'
 import Cart     from './pages/Cart'
 import About    from './pages/About'
 import Contact  from './pages/Contact'
-import Footer from './components/Footer'
-import Login from './pages/Login'
+import Footer from './components/Footer_Light'
+import Login from './pages/Login_Light'
 
 function App() {
   return (
