@@ -114,6 +114,9 @@ function Navbar() {
           <Link to="/login" className="ps-link">
             Login
           </Link>
+          <Link to="/profile" className="ps-link">
+            👤 Pofile
+          </Link>
           <Link to="/cart" className="ps-cart">
             🛒 Cart
             {totalItems > 0 && <span className="ps-badge">{totalItems}</span>}

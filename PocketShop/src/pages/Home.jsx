@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import BannerCarousel from '../components/BannerCarousel_Light'
-
+import ProductsGrid from '../components/ProductsGrid'
 
 
 function Home() {
@@ -26,6 +26,7 @@ function Home() {
   })
 
   return (<>
+       <ProductsGrid />
 
       {/* Banner Carousel */}
       <BannerCarousel />
