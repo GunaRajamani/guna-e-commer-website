@@ -1,75 +1,51 @@
 import { useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
+import { getProducts, getCategories } from '../services/productService'
 
 function ProductsGrid() {
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('featured')
   const [loading, setLoading] = useState(true)
 
-  // Fetch products from FakeStore API
+  // Fetch products from Django
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products')
-        const data = await response.json()
+        const params = {
+          category: selectedCategory !== 'all' ? selectedCategory : null,
+          search: searchQuery,
+          sort: sortBy,
+        }
         
-        const enrichedProducts = data.map((product) => ({
-          ...product,
-          price: Math.round(product.price * 100) / 100,
-          discount: Math.floor(Math.random() * 30),
-          reviews: Math.floor(Math.random() * 300) + 10,
-          rating: Math.floor(Math.random() * 2) + 4,
-        }))
-
-        setProducts(enrichedProducts)
-        setFilteredProducts(enrichedProducts)
-        setLoading(false)
+        const data = await getProducts(params)
+        // Handle both list and paginated responses
+        const productList = Array.isArray(data) ? data : data.results || []
+        setProducts(productList)
+        setFilteredProducts(productList)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        console.error('Error:', error)
+      } finally {
         setLoading(false)
       }
     }
 
     fetchProducts()
+  }, [selectedCategory, searchQuery, sortBy])
+
+  // Fetch categories
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const cats = await getCategories()
+      setCategories(['all', ...cats])
+    }
+    fetchCategories()
   }, [])
 
-  // Filter and sort products
-  useEffect(() => {
-    let filtered = products
-
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter((p) => p.category === selectedCategory)
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter((p) =>
-        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    }
-
-    switch (sortBy) {
-      case 'price-low':
-        filtered.sort((a, b) => a.price - b.price)
-        break
-      case 'price-high':
-        filtered.sort((a, b) => b.price - a.price)
-        break
-      case 'newest':
-        filtered.reverse()
-        break
-      default:
-        break
-    }
-
-    
-  }, [selectedCategory, searchQuery, sortBy, products])
-
-  const categories = ['all', ...new Set(products.map((p) => p.category))]
-
+  // Rest of component stays the same...
   return (
     <>
       <style>{`

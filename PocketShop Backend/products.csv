@@ -1,0 +1,17 @@
+title,price,description,category,image,rating,reviews,discount
+iPhone 15,999.99,Latest phone,electronics,https://example.com/iphone.jpg,4.8,250,10
+Samsung Galaxy,899.99,Android phone,electronics,https://example.com/samsung.jpg,4.7,180,15
+T-Shirt,29.99,Cotton shirt,clothing,https://example.com/tshirt.jpg,4.5,50,5
+Python Book,49.99,Learn Python,books,https://example.com/book.jpg,4.9,320,20
+Gold Bracelet,199.99,18K gold,jewelry,https://example.com/bracelet.jpg,4.8,90,0
+
+
+
+
+
+
+
+
+from products.models import Product
+
+Product.objects.create(title='Samsung Galaxy',price=15000,description='Latest Samsung smartphone',category='electronics',image='https://via.placeholder.com/300x300?text=Samsung',rating=4.5,reviews=100,discount=10)

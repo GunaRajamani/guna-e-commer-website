@@ -12,15 +12,15 @@ function ProductDetail() {
 
   useEffect(() => {
     // Fetch main product
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`http://localhost:8000/api/products/${id}/`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
 
     // Fetch all products for related items
-    fetch('https://fakestoreapi.com/products')
+    fetch('http://localhost:8000/api/products/')
       .then((res) => res.json())
       .then((data) => {
-        fetch(`https://fakestoreapi.com/products/${id}`)
+        fetch(`http://localhost:8000/api/products/${id}/`)
           .then((res) => res.json())
           .then((mainProduct) => {
             const related = data.filter(
@@ -77,8 +77,8 @@ function ProductDetail() {
           <div className="pd-info">
             <span className="pd-category">{product.category}</span>
             <h1>{product.title}</h1>
-            <div className="pd-rating">⭐ {product.rating?.rate || 4.5} ({product.rating?.count || 100} reviews)</div>
-            <p className="pd-price">${product.price}</p>
+            <div className="pd-rating">⭐ {product.rating || 4.5} ({product.reviews || 100} reviews)</div>
+            <p className="pd-price">₹{product.price}</p>
             <p className="pd-desc">{product.description}</p>
 
             <div className="pd-quantity">
@@ -112,3 +112,5 @@ function ProductDetail() {
 }
 
 export default ProductDetail
+
+
